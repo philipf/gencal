@@ -12,11 +12,12 @@
 	// "forwardPorts": [],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "pip3 install --user -r requirements.txt",
+	"postCreateCommand": "pip3 install --user -r requirements.txt && curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash",
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"jock.svg"
+				"jock.svg",
+				"ms-python.python"
 			]
 		}
 	}

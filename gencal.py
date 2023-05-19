@@ -26,13 +26,12 @@ def generate_svg_calendar(year, month):
     header_height = 20
 
     # Constants for SVG drawing
-    svg_filename = "calendar.svg"
     svg_size = (f"{cell_size * 7 + 20}px", f"{header_height + cell_size * (len(calendar_month) + 1)}px")
     font_family = "Arial"
     font_fill = "black"
     
     # Create SVG drawing
-    svg_drawing = svgwrite.Drawing(filename=svg_filename, size=svg_size)
+    svg_drawing = svgwrite.Drawing(size=svg_size)
 
     # Add the month and year as a centred title
     title_text = f"{calendar.month_name[int(month)]} {year}"
@@ -77,9 +76,6 @@ def generate_svg_calendar(year, month):
                                                  stroke="grey", 
                                                  fill="lightgrey", 
                                                  opacity="0.3"))
-
-    # Save the SVG
-    svg_drawing.save()
-
-# Call the function to generate a calendar for June 2023
-generate_svg_calendar(2023, 2)
+                
+                
+    return svg_drawing
