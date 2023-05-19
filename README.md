@@ -4,6 +4,8 @@
 Generates a simple month calendar in SVG format.
 I use this tool to generate calendars to pull into draw.io to plan out upcoming deployments.
 
+Disclaimer:To get this done as quickly as possible most of the code was generated using ChatGPT and Github Copilot.
+
 ## Usage:
 1. The easiest it to open the repository in Github's codespaces or open using DevContainers
 2. Update the last line in `gencal.py` to the required calendar value, for example
