@@ -4,20 +4,35 @@
 Generates a simple month calendar in SVG format.
 I use this tool to generate calendars to pull into draw.io to plan out upcoming deployments.
 
-Disclaimer:To get this done as quickly as possible most of the code was generated using ChatGPT and Github Copilot.
+Disclaimer: To expedite the process, most of the code was generated using ChatGPT and Github Copilot.
 
 ## Usage:
-1. The easiest it to open the repository in Github's codespaces or open using DevContainers
-2. Update the last line in `gencal.py` to the required calendar value, for example
 
-```python
-generate_svg_calendar(2023, 2)
+### Online
+
+Retrieve calendar for the current month:
+
+https://gencal.azurewebsites.net/
+
+Retrieve a calendar for a specific month:
+
+https://gencal.azurewebsites.net/2023/5
+
+### Command line
+1. The easiest is to open the repository in Github's codespaces or open using DevContainers
+2. Usage:
+
+```bash
+python gencal.py 2023 5
 ```
 
-3. Download/save the calendar.svg file
-
+3. Download or save the generated file `cal-\<year\>-\<month\>`.svg for example `cal-2023-05.svg`
 
 ## Example SVG:
 
 <img src="calendar.svg"/>
 
+
+## Deploy to Azure as an Python App Service
+- See Azure [documention](https://learn.microsoft.com/en-us/azure/app-service/quickstart-python) to deploy a Python web app)
+- Review the included `install-az.sh` script
