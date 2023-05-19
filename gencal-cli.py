@@ -26,7 +26,7 @@ def main():
     svg_drawing = gencal.generate_svg_calendar(year, month)
     
     # Save the calendar to a file
-    filename = f"{year}-{month}.svg"
+    filename = f"cal-{year}-{str(month).zfill(2)}.svg"
     try:
         svg_drawing.saveas(filename)
         print(f"Calendar saved to {filename}")
