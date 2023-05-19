@@ -16,7 +16,7 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"SimonSiefke.svg-preview"
+				"jock.svg"
 			]
 		}
 	}
