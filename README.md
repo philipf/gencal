@@ -11,11 +11,9 @@ Disclaimer: To expedite the process, most of the code was generated using ChatGP
 ### Online
 
 Retrieve calendar for the current month:
-
 https://gencal.azurewebsites.net/
 
 Retrieve a calendar for a specific month:
-
 https://gencal.azurewebsites.net/2023/5
 
 ### Command line
@@ -27,6 +25,20 @@ python gencal.py 2023 5
 ```
 
 3. Download or save the generated file `cal-\<year\>-\<month\>`.svg for example `cal-2023-05.svg`
+
+### Flask App
+
+Run by running
+
+```bash
+python app.py
+```
+
+Optionally deploy it to a Azure App Service
+
+```bash
+app-install-az.sh
+```
 
 ## Example SVG:
 
