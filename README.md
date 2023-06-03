@@ -11,10 +11,10 @@ Disclaimer: To expedite the process, most of the code was generated using ChatGP
 ### Online
 
 Retrieve calendar for the current month:
-https://gencal.azurewebsites.net/
+https://gencal.notnot.ninja/
 
 Retrieve a calendar for a specific month:
-https://gencal.azurewebsites.net/2023/5
+https://gencal.notnot.ninja/2023/5
 
 ### Command line
 1. The easiest is to open the repository in Github's codespaces or open using DevContainers
