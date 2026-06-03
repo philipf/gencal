@@ -20,30 +20,47 @@ Calendar for the current month:
 Calendar for a specific month (`/<year>/<month>`):
 <https://gencal.notnot.ninja/2023/5>
 
-### Run locally
+## Implementation
 
-This project uses [mise](https://mise.jdx.dev/) to manage the toolchain (Python + [uv](https://docs.astral.sh/uv/)) and `uv` to manage dependencies.
+gencal is a [TypeScript](https://www.typescriptlang.org/) [Cloudflare Worker](https://developers.cloudflare.com/workers/).
+It has no runtime dependencies — the SVG is generated as a string.
+
+## Run locally
+
+This project uses [mise](https://mise.jdx.dev/) to manage the toolchain (Node +
+[pnpm](https://pnpm.io/)) and pnpm to manage dependencies.
 
 ```bash
-mise install   # installs the pinned Python and uv
-uv sync        # creates .venv and installs locked dependencies
+mise install   # installs the pinned Node and pnpm
+pnpm install   # installs dependencies
+pnpm dev       # runs the Worker locally via wrangler
 ```
 
-Start the Flask app:
+Then open <http://localhost:8787/> for the current month, or
+<http://localhost:8787/2023/5> for a specific month.
+
+Run the tests and typecheck:
 
 ```bash
-uv run flask run
+pnpm test
+pnpm typecheck
 ```
 
-Then open <http://localhost:5000/> for the current month, or
-<http://localhost:5000/2023/5> for a specific month.
+## Deploy
+
+Manual deploy to Cloudflare (a `*.workers.dev` URL):
+
+```bash
+pnpm exec wrangler login    # one-time, opens browser OAuth
+pnpm deploy                 # wrangler deploy
+```
 
 ## Project layout
 
-| Path             | Purpose                                                  |
-| ---------------- | -------------------------------------------------------- |
-| `app.py`         | Flask app that serves the calendar as an SVG response.   |
-| `gencal.py`      | Core module that builds the SVG calendar drawing.        |
-| `pyproject.toml` | Project metadata and dependencies.                       |
-| `uv.lock`        | Pinned, reproducible dependency lockfile.                |
-| `archive/`       | Legacy deployment/tooling, kept for reference. See its [README](archive/README.md). |
+| Path               | Purpose                                                       |
+| ------------------ | ------------------------------------------------------------- |
+| `src/index.ts`     | Worker entry point — routing, errors, caching.                |
+| `src/calendar.ts`  | Core module that builds the SVG calendar string.              |
+| `test/`            | vitest unit tests.                                            |
+| `wrangler.jsonc`   | Cloudflare Worker configuration.                              |
+| `archive/`         | Legacy code/tooling, kept for reference (incl. the original Python app). See its [README](archive/README.md). |

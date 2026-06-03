@@ -13,6 +13,7 @@ modernised (see the `feat/gencal-v2` work).
 
 | Subdirectory | Purpose                                                                 |
 | ------------ | ---------------------------------------------------------------------- |
+| `python/`    | The original Python/Flask app (`app.py`, `gencal.py`) plus its `pyproject.toml`/`uv.lock`, superseded by the TypeScript Cloudflare Worker at the repo root. Run with `cd archive/python && uv run flask run`. |
 | `docker/`    | Original container build for the Flask app — `Dockerfile` and `docker-build-push.sh` (build + push to Docker Hub). Targeted Python 3.9 and `pip install -r requirements.txt`. |
 | `azure/`     | `app-install-az.sh` — deploys the app to an Azure App Service (Free F1 plan) via `az webapp up`. |
 | `cli/`       | `gencal-cli.py` — standalone command-line wrapper around `gencal.generate_svg_calendar()` that writes `cal-<year>-<month>.svg` to disk. |

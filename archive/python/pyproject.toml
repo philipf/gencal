@@ -1,8 +1,7 @@
 [project]
 name = "gencal"
 version = "2.0.0"
-description = "Flask app that serves a calendar as an SVG image"
-readme = "README.md"
+description = "Flask app that serves a calendar as an SVG image (archived v1)"
 requires-python = ">=3.14"
 dependencies = [
     "flask>=3.1.3",
