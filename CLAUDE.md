@@ -12,4 +12,4 @@ Five canonical triage roles using default label strings. See `docs/agents/triage
 
 ### Domain docs
 
-Single-context layout (`CONTEXT.md` + `docs/adr/` at root). See `docs/agents/domain.md`.
+Single-context layout (`docs/CONTEXT.md` + `docs/adr/`). See `docs/agents/domain.md`.
