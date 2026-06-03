@@ -1,50 +1,49 @@
 # gencal
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/philipf/gencal)
 
 Generates a simple month calendar in SVG format.
-I use this tool to generate calendars to pull into draw.io to plan out upcoming deployments.
 
-Disclaimer: To expedite the process, most of the code was generated using ChatGPT and Github Copilot.
+I use this tool to generate calendars to pull into [draw.io](https://draw.io) to plan out upcoming deployments.
 
-## Usage:
+> Disclaimer: To expedite the process, most of the original code was generated using ChatGPT and GitHub Copilot.
+
+## Example
+
+<img src="calendar.svg" alt="Example SVG calendar"/>
+
+## Usage
 
 ### Online
 
-Retrieve calendar for the current month:
-https://gencal.notnot.ninja/
+Calendar for the current month:
+<https://gencal.notnot.ninja/>
 
-Retrieve a calendar for a specific month:
-https://gencal.notnot.ninja/2023/5
+Calendar for a specific month (`/<year>/<month>`):
+<https://gencal.notnot.ninja/2023/5>
 
-### Command line
-1. The easiest is to open the repository in Github's codespaces or open using DevContainers
-2. Usage:
+### Run locally
 
-```bash
-python gencal.py 2023 5
-```
-
-3. Download or save the generated file `cal-\<year\>-\<month\>`.svg for example `cal-2023-05.svg`
-
-### Flask App
-
-Run by running
+This project uses [mise](https://mise.jdx.dev/) to manage the toolchain (Python + [uv](https://docs.astral.sh/uv/)) and `uv` to manage dependencies.
 
 ```bash
-python app.py
+mise install   # installs the pinned Python and uv
+uv sync        # creates .venv and installs locked dependencies
 ```
 
-Optionally deploy it to a Azure App Service
+Start the Flask app:
 
 ```bash
-app-install-az.sh
+uv run flask run
 ```
 
-## Example SVG:
+Then open <http://localhost:5000/> for the current month, or
+<http://localhost:5000/2023/5> for a specific month.
 
-<img src="calendar.svg"/>
+## Project layout
 
-
-## Deploy to Azure as an Python App Service
-- See Azure [documention](https://learn.microsoft.com/en-us/azure/app-service/quickstart-python) to deploy a Python web app)
-- Review the included `install-az.sh` script
+| Path             | Purpose                                                  |
+| ---------------- | -------------------------------------------------------- |
+| `app.py`         | Flask app that serves the calendar as an SVG response.   |
+| `gencal.py`      | Core module that builds the SVG calendar drawing.        |
+| `pyproject.toml` | Project metadata and dependencies.                       |
+| `uv.lock`        | Pinned, reproducible dependency lockfile.                |
+| `archive/`       | Legacy deployment/tooling, kept for reference. See its [README](archive/README.md). |
