@@ -1,0 +1,9 @@
+[tools]
+python = "3.14"
+uv = "latest"
+node = "lts"
+"npm:pnpm" = "latest"
+
+[env]
+# Make uv use mise's Python rather than downloading its own.
+UV_PYTHON_PREFERENCE = "only-system"

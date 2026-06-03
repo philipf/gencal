@@ -1,50 +1,66 @@
 # gencal
-[![Open in Dev Containers](https://img.shields.io/static/v1?label=Dev%20Containers&message=Open&color=blue&logo=visualstudiocode)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/philipf/gencal)
 
 Generates a simple month calendar in SVG format.
-I use this tool to generate calendars to pull into draw.io to plan out upcoming deployments.
 
-Disclaimer: To expedite the process, most of the code was generated using ChatGPT and Github Copilot.
+I use this tool to generate calendars to pull into [draw.io](https://draw.io) to plan out upcoming deployments.
 
-## Usage:
+> Disclaimer: To expedite the process, most of the original code was generated using ChatGPT and GitHub Copilot.
+
+## Example
+
+<img src="calendar.svg" alt="Example SVG calendar"/>
+
+## Usage
 
 ### Online
 
-Retrieve calendar for the current month:
-https://gencal.notnot.ninja/
+Calendar for the current month:
+<https://gencal.notnot.ninja/>
 
-Retrieve a calendar for a specific month:
-https://gencal.notnot.ninja/2023/5
+Calendar for a specific month (`/<year>/<month>`):
+<https://gencal.notnot.ninja/2023/5>
 
-### Command line
-1. The easiest is to open the repository in Github's codespaces or open using DevContainers
-2. Usage:
+## Implementation
 
-```bash
-python gencal.py 2023 5
-```
+gencal is a [TypeScript](https://www.typescriptlang.org/) [Cloudflare Worker](https://developers.cloudflare.com/workers/).
+It has no runtime dependencies — the SVG is generated as a string.
 
-3. Download or save the generated file `cal-\<year\>-\<month\>`.svg for example `cal-2023-05.svg`
+## Run locally
 
-### Flask App
-
-Run by running
+This project uses [mise](https://mise.jdx.dev/) to manage the toolchain (Node +
+[pnpm](https://pnpm.io/)) and pnpm to manage dependencies.
 
 ```bash
-python app.py
+mise install   # installs the pinned Node and pnpm
+pnpm install   # installs dependencies
+pnpm dev       # runs the Worker locally via wrangler
 ```
 
-Optionally deploy it to a Azure App Service
+Then open <http://localhost:8787/> for the current month, or
+<http://localhost:8787/2023/5> for a specific month.
+
+Run the tests and typecheck:
 
 ```bash
-app-install-az.sh
+pnpm test
+pnpm typecheck
 ```
 
-## Example SVG:
+## Deploy
 
-<img src="calendar.svg"/>
+Manual deploy to Cloudflare (a `*.workers.dev` URL):
 
+```bash
+pnpm exec wrangler login    # one-time, opens browser OAuth
+pnpm deploy                 # wrangler deploy
+```
 
-## Deploy to Azure as an Python App Service
-- See Azure [documention](https://learn.microsoft.com/en-us/azure/app-service/quickstart-python) to deploy a Python web app)
-- Review the included `install-az.sh` script
+## Project layout
+
+| Path               | Purpose                                                       |
+| ------------------ | ------------------------------------------------------------- |
+| `src/index.ts`     | Worker entry point — routing, errors, caching.                |
+| `src/calendar.ts`  | Core module that builds the SVG calendar string.              |
+| `test/`            | vitest unit tests.                                            |
+| `wrangler.jsonc`   | Cloudflare Worker configuration.                              |
+| `archive/`         | Legacy code/tooling, kept for reference (incl. the original Python app). See its [README](archive/README.md). |

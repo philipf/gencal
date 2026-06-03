@@ -1,7 +1,4 @@
 # Flask app that serves a calendar as an SVG image
-# Important that is named app.py so the Azure App Service automatically runs it.
-# Otherwise you need to configure the startup file in the Azure App Service configuration.
-# az webapp config set --resource-group <resource-group-name> --name <app-name> --startup-file "<custom-command>"
 from flask import Flask, Response, abort
 from datetime import datetime
 import gencal
