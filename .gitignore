@@ -1,3 +1,8 @@
+# Node / TypeScript / Cloudflare Worker
+node_modules/
+.wrangler/
+dist/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
