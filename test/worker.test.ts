@@ -27,6 +27,20 @@ describe("routing", () => {
   });
 });
 
+describe("caching", () => {
+  it("does not cache the current-month route", () => {
+    const res = get("/");
+    expect(res.headers.get("cache-control")).toBe("no-store");
+  });
+
+  it("caches a dated route immutably", () => {
+    const res = get("/2023/5");
+    expect(res.headers.get("cache-control")).toBe(
+      "public, max-age=31536000, immutable",
+    );
+  });
+});
+
 describe("error parity", () => {
   it("returns 400 for an out-of-range month", async () => {
     const res = get("/2023/13");
