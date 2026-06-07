@@ -15,10 +15,10 @@ I use this tool to generate calendars to pull into [draw.io](https://draw.io) to
 ### Online
 
 Calendar for the current month:
-<https://gencal.notnot.ninja/>
+<https://gencal.notnot.uk/>
 
 Calendar for a specific month (`/<year>/<month>`):
-<https://gencal.notnot.ninja/2023/5>
+<https://gencal.notnot.uk/2023/5>
 
 ## Implementation
 
