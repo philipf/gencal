@@ -79,7 +79,7 @@ export function generateSvgCalendar(year: number, month: number): string {
   const parts: string[] = [];
 
   // Centred, bold title: "{Month} {Year}".
-  const titleText = `${MONTH_NAMES[month - 1]} ${year}`;
+  const titleText = `${MONTH_NAMES[month - 1].toUpperCase()} ${year}`;
   const titleX = (CELL_SIZE * 7) / 2 + 10;
   const titleY = HEADER_HEIGHT / 2 + 10;
   parts.push(

@@ -17,13 +17,13 @@ describe("routing", () => {
     const res = get("/2023/5");
     expect(res.status).toBe(200);
     expect(res.headers.get("content-type")).toBe("image/svg+xml");
-    expect(await res.text()).toContain(">May 2023<");
+    expect(await res.text()).toContain(">MAY 2023<");
   });
 
   it("accepts a zero-padded month", async () => {
     const res = get("/2023/05");
     expect(res.status).toBe(200);
-    expect(await res.text()).toContain(">May 2023<");
+    expect(await res.text()).toContain(">MAY 2023<");
   });
 });
 

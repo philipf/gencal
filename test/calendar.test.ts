@@ -46,7 +46,7 @@ describe("generateSvgCalendar", () => {
 
   it("includes the month/year title", () => {
     const svg = generateSvgCalendar(2023, 5);
-    expect(svg).toContain(">May 2023<");
+    expect(svg).toContain(">MAY 2023<");
   });
 
   it("includes Monday-first weekday headers", () => {
